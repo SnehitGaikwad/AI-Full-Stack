@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Data Types In JS</h1>
+    <hr>
+
+
+    <!-- Internal JS -->
+    <script>
+
+        let name="Pratik";
+        console.log(name)
+
+        // Data  types
+
+        // PDT-predefined / built in data types
+        // int,char,float,boolean,bigint,double,longdouble
+
+
+
+        // in JS
+
+        // number , string, boolean,null,undefined,symbol
+
+
+
+
+
+        // NPDT- user defined / build from PDT
+
+        // string,array,object,function
+        
+
+
+        // *************************************************
+
+
+        // PDT
+
+        // number
+
+        let age=30;
+        let Person_B_Age=30.5
+        console.log(age)
+        console.log(Person_B_Age)
+
+        //  to check data types of any variable
+        // built in operator - typeof
+
+        console.log(typeof age)
+        console.log(typeof Person_B_Age)
+
+        // string
+        //collection of characters
+        // stored in a. " " or ''
+
+        let empRole="AI Engineer";
+        console.log(empRole)
+
+        let empRole2='Devops Engineer';
+        console.log(empRole2)
+
+        console.log(typeof empRole)
+        console.log(typeof empRole2)
+
+
+        // boolean
+
+        // true / false
+        // decision making
+        // used to conditional statments
+
+
+        let isEligible=false
+        console.log(isEligible)
+
+        console.log(typeof isEligible)
+
+
+        // null- used to stored null value 
+        let empId=null;
+        // empId=1234;
+        console.log(empId)
+
+
+        // here JS Return object  and it is a bug in a JS as per experts
+        console.log(typeof empId) //object
+
+        // empty
+        let empCTC=" "
+        console.log(empCTC)
+        console.log(typeof empCTC)
+
+
+
+        // undefined
+        // when we doesnt initialzed value inside JS variable it return undefined value
+        // by default value- undefined
+
+
+        // 
+        let a;
+        console.log(a);//undefined
+
+        console.log(typeof a);//undefined
+
+
+        // symbol-it stored unique value and returns boolean value
+        // it calls symbol function
+
+        let no1="20";
+        let no2="20";
+
+        console.log(no1==no2);//true
+        console.log(Symbol(no1)==Symbol(no2))
+
+
+        // BigInt
+
+
+        // const abc;
+        // console.log(abc);//
+
+
+        // *****************************************
+        // NPDT
+
+        // Array- is a collection of similar or different data type of elements
+        // we can stored multiple values at a same time
+        // stored data in a container [ ];
+        // starts indexing from 0
+
+        // Array is a special type of object in a JS
+
+
+        // let x=20;//number
+        // let y="ABC";//string
+        // let z=null;//object
+        // let q; //undefined
+
+        // let skill_1="React"
+        // let skill_2="NextJS"
+        // let skill_3="NodeJS";
+        // let skill_4="AWS";
+        // let skill_5="Data Science"
+
+        // or
+        let skill=["React","NextJS","AWS","Data Science",1234,true,null,["Pratik","Prathmesh"]];
+        console.log(skill)
+        
+        console.log(typeof skill);//object
+
+        // object
+        // 
+
+        //intern
+        let intern_Stipend="10K"
+        // 
+        let intern_Name="Motu";
+        let intern_Skill="HTML";
+        let intern_Id=12345;;
+
+        // 
+        let intern1=["MOTU","HTML","12345","10K"]
+
+        // object- stored large amount of data in a key:value pair
+        // usede to stored large data sets
+        // stored in {key:value}
+
+
+
+        // object
+        let obj={
+    
+            intern_Name:"Pratik",
+            intern_Id:12345,
+            intern_Skill:"FUll STack",
+            intern_Stipend:"10k",
+            isEligible:true
+        }
+
+
+        console.log(obj)
+
+        console.log(typeof obj)
+        
+
+    </script>
+    
+</body>
+</html>

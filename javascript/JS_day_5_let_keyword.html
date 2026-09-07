@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- let and const - Introduce in ES-6 (Modern JS)
+
+
+    1. used to declared JS Variable
+    2. we can declared variable without initilazation
+    3. we can not redeclared variable with same name
+    4. we can update value
+    5. scope- block level
+
+      -->
+
+
+    <script>
+            // 1. used to declared JS Variable
+
+            let name="Shivam";
+            let age=20
+            console.log(name)
+            console.log(age)
+
+            // 2. we can declared variable without initlization
+            let empRole;
+            empRole="AI Engineer"
+            console.log(empRole);
+
+            //3. we can not redclared variable with same name
+
+            // Cannot redeclare block-scoped variable 'userEmail'.javascript
+
+            let userEmail="pratik@gmail.com";
+            // let userEmail="abc@gmail.com";
+
+            console.log(userEmail);
+
+
+
+            // 4. we can update value
+
+            let userPassword="$ABC@123";
+            // userPassword="ABC@123";
+            console.log(userPassword)
+
+
+            //5. Block scope- limited to that specific block - {}
+
+            let a=50;
+            console.log(a)//50
+            if(true)
+            {
+                let a=600;
+                console.log(a)//600
+            }
+
+            console.log(a) ;//50
+            
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

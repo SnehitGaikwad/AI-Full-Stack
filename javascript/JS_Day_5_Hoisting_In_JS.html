@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // Hoisting in JS
+
+        // Is a JS By default behavior that variable declarations
+        // goes to the top of scope when we declared
+
+        // i.e we can use variable after declartion
+        //  or we can use variable before declration
+
+        // var let const declration are hoisted
+
+
+        // 1
+
+        var a = 30;
+        console.log(a)//30
+
+        //2
+        a = 40;
+        console.log(a) //40
+        var a;
+
+        // internally code like
+        // var a;
+        //a=40
+        //console.log(a)
+
+
+        // 3
+        // var skill="NextJS";
+        // console.log(skill);
+
+
+        // undefined- by default JS value when we doesnt pass value while declration
+        // var skill;
+        let skill;
+        console.log(skill);// undefined
+
+
+
+        // 4
+        console.log(x);
+        var x = "Pratik";
+
+        // internally
+        /*
+
+           var x;
+           console.log(x)//undefined
+
+
+
+        */
+
+
+        // variable declrations are hoisted
+        // variable initiliazation are not hoisted
+
+
+        // ****************************************
+
+        // let and const declrations are hoisted but not initlization
+        //  we can not used variable using let const until it has been declared
+
+
+        console.log(a) // undefined
+        var a = 400;
+
+
+        // let and const
+        var p;
+        console.log(p);//undefined
+
+        let s;
+        console.log(s);//undefined
+
+
+        // var
+        // name="SHivam";
+        // console.log(name);
+        // var name;
+
+
+        // let and const goes into Temporal dead zone until it has been declared
+
+
+        let name;
+        name = "SHivam";
+        console.log(name);//error
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

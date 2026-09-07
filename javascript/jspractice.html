@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script>
+    let no1 = Number(prompt("Enter Number 1"));
+let no2 = Number(prompt("Enter Number 2"));
+
+let choice = prompt("Enter 1 for Addition or 2 for Multiplication");
+
+if (choice == 1) {
+    let result = no1 + no2;
+    alert("Addition = " + result);
+}
+else if (choice == 2) {
+    let result = no1 * no2;
+    alert("Multiplication = " + result);
+}
+else {
+    alert("Invalid Choice");
+}
+</script> -->
+
+    <script>
+
+        let shop_Amt = Number(prompt("Enter Shopping Amount"));
+
+        let disc;
+
+        if (shop_Amt >= 20000) {
+            disc = 20;
+        }
+        else if (shop_Amt >= 30000) {
+            disc = 30;
+        }
+        else if (shop_Amt >= 40000) {
+            disc = 40;
+        }
+        else {
+            disc = 0;
+        }
+
+        alert("Shopping Amount = " + shop_Amt +
+            "\nDiscount = " + disc + "%");
+    </script>
+</body>
+
+</html>

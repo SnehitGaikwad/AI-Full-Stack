@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>HTML Forms</h1>
+
+
+    <!-- form
+     
+    Used to fetch information from user
+
+    It can be Personal Info
+    Educational Info
+    Employement Info
+    Gov Info
+    Login 
+    Signup
+    Banking 
+    -->
+
+    <!-- Attributes
+     
+    action=what to perform
+
+    method="way of passing data"- GET/POST
+
+    GET-data pass through url
+        Not Secure
+        data visible to all
+        we can pass limited data via get method upto 8 MB
+
+
+    POST-
+        Data pass thorugh body i.e hidden pass
+        Secure Method
+        pass Unlimited data
+
+    enctype- encrypt data i.e
+    
+    -->
+    <form action="/saveform" method="get" enctype="">
+
+        <!-- fetch user input
+         
+        type="text/email/password/number/color/search/range/radio/file/hidden/checkbox/tel/"
+
+        name and id must be unique
+
+        name="used to store data in database"
+        id="Used in CSS for styling and In JS for logical work"
+
+
+
+
+        value- used to set by default value
+
+
+        Additional Attributes
+
+        required
+
+        placeholder- by default guide value
+
+        readonly
+        disabled
+
+
+        checked
+        selected
+
+
+        multiple
+
+        pattern=""
+    
+
+
+
+        -->
+        <input type="text" name="username" id="username">
+
+    </form>
+
+    <hr>
+
+
+    <h1>Personal Data</h1>
+
+    <form action="" method="" enctype="">
+        <label for="">Enter Your Name</label>
+        <input type="text" name="firstname" id="firstname" value="Pratik sabale" readonly>
+        <br>
+        <br>
+
+        <label for="">Enter Your Email <sup style="color:red">*</sup></label>
+        <input type="email" name="useremail" id="useremail" placeholder="john@gmail.com" required>
+
+        <br><br>
+        <label for="">Enter Your Password</label>
+        <input type="password" name="userpassword" placeholder="enter a strong password" id="userpassword">
+        <br>
+        <br>
+        <label for="">Mobile No</label>
+        <input type="number" name="phone" id="phone">
+        <input type="text" name="phone" id="phone">
+
+        <br><br>
+        <label for="">Book An Appointment</label>
+        <input type="date" name="Appointment" id="Appointment" disabled>
+        <br>
+        <br>
+        <label for="">Book Your Slot</label>
+        <input type="time" name="time" id="time">
+        <br>
+        <br>
+
+        <label for="">Your Gender</label>
+        <input type="radio" name="gender" id="gender" value="Male"><span>Male</span>
+        <input type="radio" name="gender" id="gender" value="Female"><span>Female</span>
+        <input type="radio" name="gender" id="gender" value="Prefer Not To Say"><span>Prefer Not To Say</span>
+
+        <br><br>
+        <label for="">Upload Your Profile</label>
+        <input type="file" name="profile" id="profile">
+
+        <input type="file" name="profile" id="profile" multiple>
+        <br><br>
+
+        <label for="">Choose Your Courses</label>
+        <input type="checkbox" name="courses" id="courses" value="Frontend"><span>Frontend</span>
+        <input type="checkbox" name="courses" id="courses" value="Backend"><span>Backend</span>
+        <input type="checkbox" name="courses" id="courses" value="Devops"><span>Devops</span>
+        <input type="checkbox" name="courses" id="courses" value="AI Full Stack"><span>AI Full Stack</span>
+        <input type="checkbox" name="courses" id="courses" value="Agentic AI"><span>Agentic AI</span>
+        <input type="checkbox" name="courses" id="courses" value="GenAI" checked disabled><span>Gen AI</span>
+
+        <br>
+        <br>
+
+        <label for="">search</label>
+        <input type="search" name="" id="">
+        <br><br>
+        <label for="">CHoose Your Color</label>
+        <input type="color" name="" id="">
+        <br><br>
+
+
+
+        <!-- dropdown box -->
+        <label for="">Choose Your Education</label>
+        <select name="education" id="education">
+            <option value="None">select</option>
+            <option value="BCS/BCA">BCS/BCA</option>
+            <option value="MCS/MCA" selected>MCS/MCA</option>
+            <option value="BE/B-TECH">BE/B-Tech</option>
+            <option value="ME/M-TECH">ME/M-Tech</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <br>
+        <label for="">Send A MSG</label>
+        <textarea name="" id="" style="width:100%;height:100px"></textarea>
+
+        <br><br>
+
+        <label for="">Telephone No</label>
+        <input type="tel" name="" value="+919119421237" id="">
+
+        <br><br>
+
+
+        <label for="">Choose Your Range</label>
+        <input type="range" name="" id="">
+        <hr>
+
+        <!-- <button></button> -->
+        <button>Save Form</button>
+        <input type="submit" name="" id="">
+
+
+        <!-- reset form -->
+        <input type="reset" name="" id="">
+
+
+
+
+
+
+
+    </form>
+
+
+
+
+
+
+</body>
+
+</html>

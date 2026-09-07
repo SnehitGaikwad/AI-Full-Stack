@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>const keyword in JS- Modern JS ( ES-6 )</h1>
+    <hr>
+
+    <script>
+        // const keyword
+
+        // constant value- we can not change
+
+        // use to declared variable
+        // we can declared variable without initialization
+        // we can not declarred variable with same name
+        //we can not update value
+        //scope- block level scope
+
+
+        // 1   use to declared variable
+
+        const empId = "#12321";
+        console.log(empId)
+
+        // 2 we can not declared variable without initialization
+        // i.e we must need to intialize value while variable declaration
+        const empRole = "Full Stack AI Engineer"
+        // empRole="Full Stack AI Engineer";
+        console.log(empRole)
+
+
+        // 3 we can not redeclared variable with same name
+        // Cannot redeclare block-scoped variable 'userEmail'.javascript
+        const userEmail = "abc@gmail.com";
+        // const userEmail=""
+
+        console.log(userEmail)
+
+        // 4- we can not update value
+        const userPAN = "ABCD1234F";
+        // userPAN="PQRS1234S";
+        console.log(userPAN)//typerror- Assignment to constant variable.
+
+
+        //5 scope- block level
+
+        const a = 50;
+        console.log(a)//50
+        if (true) {
+           const a = 600;
+            console.log(a);//600
+        }
+
+        console.log(a);//50
+
+
+        
+
+
+
+    </script>
+
+</body>
+
+</html>

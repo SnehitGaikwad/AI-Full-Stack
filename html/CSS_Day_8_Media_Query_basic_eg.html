@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            height: 100px;
+            width: 100%;
+            background-color: aqua;
+        }
+
+        @media screen and (min-width: 480px) and (max-width: 768px) {
+            body {
+                background-color: lightgreen;
+            }
+        }
+
+
+        /* mobile devices */
+
+        /* 0-767px */
+        @media screen And (max-width:767px) {
+            .container {
+                background-color: black;
+            }
+
+        }
+
+        /* tablet-
+        >767px and <1024px
+        */
+
+        @media screen And (min-width:768px) {
+            .container {
+                background-color: blue;
+            }
+
+        }
+
+        /* laptop */
+
+        @media screen And (min-width:1024px) {
+
+            .container {
+                background-color: blueviolet;
+            }
+
+        }
+
+        /* desktop */
+
+        @media screen And (min-width:1280px) {
+            .container {
+                background-color: yellow;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+    </div>
+
+</body>
+
+</html>

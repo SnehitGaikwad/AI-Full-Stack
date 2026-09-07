@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <!-- scope -->
+
+    <!-- accessibility of variables
+
+            Block Scope - {} - limited to that block
+            Global Scope- we can access variable globally anywhere
+            local scope / function scope- we can access data within inside function
+
+     
+    -->
+
+    <!-- var- Global scope -->
+
+    <script>
+
+        // var scope- global scope
+
+
+
+        // if(condition)
+        // {
+        //     //if true
+        // }
+
+
+        var a = 200;
+        console.log(a);//200
+        if (true) {
+            alert("Helllo welcome.....")
+            var a = 300;
+            console.log(a)//300
+        }
+
+        console.log(a)//300
+
+
+
+        //let Block scope- limitied to that specific block - {}
+
+        let a = 50;
+        console.log(a)
+        if (true) {
+            let a = 600;
+            console.log(a)
+        }
+
+        console.log(a)
+
+
+    </script>
+
+
+</body>
+
+</html>
