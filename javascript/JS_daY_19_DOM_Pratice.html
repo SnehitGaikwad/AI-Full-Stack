@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box1{
+            height:300px;
+            width: 300px;
+            background-color: aquamarine;
+            margin: auto;
+        }
+
+        .newbox{
+            height:400px;
+            width: 400px;
+            background-color: rgb(255, 40, 248);
+            margin: auto;
+
+            border-radius: 50%;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+
+    <h1>DOM Pratice</h1>
+    <hr>
+
+    <button id="btn1" onclick="Demo()">Click Me 💁🏼</button>
+
+    <button id="addBtn" onclick="AddBox()">ADD</button>
+    <button id="removeBtn" onclick="RemoveBox()">Remove</button>
+    <button id="toggleBtn" onclick="toggleBox()">Toggle</button>
+
+
+    <div class="box1 box2" id="box1"></div>
+
+    <p id="para1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, molestiae quis consequatur magnam
+        officiis rem
+        expedita at cumque similique est quia? Cumque, saepe. Deserunt temporibus error reprehenderit facilis dolorum
+        fugiat numquam autem? Facilis maxime molestiae, distinctio eveniet excepturi dolorem corrupti libero atque neque
+        tempore debitis quasi. Odio eos vitae, id consequatur nostrum voluptate quam fugit atque alias quis dolores
+        magnam inventore esse mollitia numquam sint ratione aspernatur. Facere dignissimos vitae quas assumenda quia
+        voluptas natus architecto commodi possimus et. Mollitia officiis repudiandae fuga soluta voluptatibus, velit
+        itaque nobis eos neque debitis laboriosam voluptatum recusandae porro facere amet nemo perspiciatis explicabo,
+        aut dolorem quis aspernatur. Error consequuntur libero magnam inventore iste necessitatibus molestias beatae et
+        eaque, quae itaque laboriosam. Nobis quidem harum at voluptate voluptates excepturi iusto aspernatur perferendis
+        ipsum mollitia pariatur est ullam laborum earum, explicabo minima nostrum rem quae, quos obcaecati qui quasi?
+        Dolor, quo ipsum. Totam ad, enim voluptas rerum non accusamus accusantium libero sequi id perferendis illo,
+        quibusdam natus impedit nisi nulla suscipit voluptatibus reiciendis incidunt. Corrupti labore architecto
+        distinctio nesciunt inventore, hic temporibus minima libero esse, culpa, laboriosam fugit eum. Sapiente
+        recusandae laborum dolorem, illo velit aliquid ipsa quas consequatur id earum numquam autem quaerat tempore.</p>
+
+
+
+    <script>
+
+
+        const Demo = () => {
+            alert("hello dear")
+
+
+            // get
+            let res1 = document.getElementById('para1').innerHTML
+            console.log(res1)
+
+            //    set
+            // let res2 = document.getElementById('para1').innerHTML = "This is Modern JS"
+
+
+            //css styling
+            // ❓ how to apply CSS using JS
+
+            document.getElementById('para1').style.color="orange";
+
+            document.getElementById('para1').style.backgroundColor="purple"
+
+        }
+
+
+        // additional Properties
+        //classList- properties
+        // 3 method- add / remove / toggle
+
+        // console.log(document.getElementById('box1').classList)
+
+
+
+        const RemoveBox=()=>{
+            alert("box removed")
+            document.getElementById('box1').classList.remove('box1')
+        }
+
+
+        // add box- classList.add()
+
+        const AddBox=()=>{
+            alert("box added")
+            document.getElementById('box1').classList.add('box1')
+            // document.getElementById('box1').classList.add('newbox')
+        }
+
+
+        const toggleBox=()=>{
+            document.getElementById('box1').classList.toggle('box1')
+        }
+    </script>
+</body>
+
+</html>

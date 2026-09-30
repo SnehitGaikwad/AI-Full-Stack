@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // string
+
+        // Is a collection of characters
+        // stored in a "" or ''
+        // starts indexing from 0
+
+
+        // ways to create string
+        // literal way
+        const str = "Hello Welcome to string"
+        alert(str)
+
+        // creating instance of a string
+        const str2 = new String("Hello world")
+        console.log(str2)
+
+
+        // acccess using number indexing
+
+        console.log(str[0])
+
+
+        // Methods and properties
+
+        // length
+        // slice
+        // tpUpperCase()
+        // toLowercase()
+
+        // substr
+        // substring
+        // indexOf()
+        // lastIndexOf()
+        // at() / charAt()
+        // split()
+        // repeat()
+        // trim()
+        // includes()
+
+
+        const firstName = "PratikP "
+        console.log(firstName)
+        console.log(firstName.length)
+
+        // toUpperCase()
+        console.log(firstName.toUpperCase())
+        console.log(firstName.toLowerCase())
+
+
+
+        // it returns a index of a specific chracter
+        // indexOf()
+        // lastIndexOf()
+
+        console.log(firstName.indexOf('P'))//0
+        console.log(firstName.lastIndexOf('P'))//6
+
+        // at()- it returns a charcater of given index from string
+        // charCodeAt()- it returns a Unicode/ ASCII value of a given index character
+
+        // 
+        console.log(firstName.at(2))//a
+        console.log(firstName.charCodeAt(2))//97
+
+
+        // slice()
+        // used to extract some portion of a string
+        // syntax- slice(start,end(last index ignore))
+        // -ve index allowed
+        
+        let empRole="AI Engineer";
+        console.log(empRole)
+
+        console.log(empRole.slice(0,3))
+
+
+        // substring()
+        //same as slice
+        // but here -ve index not allowed
+        console.log(empRole.substring(0,3))
+
+        console.log(empRole.slice(-4,-2));//ne
+
+        console.log(empRole.substring(-4,-2))//blank
+
+        // substr()
+        // used to extract part of a string
+        // syntiacally same as splice
+        // substr(start,length)
+
+        console.log(empRole.slice(0,4)) //AI E
+        console.log(empRole.substring(0,4))// AI E
+        console.log(empRole.substr(0,4))//AI E
+
+
+        // split
+        // used to convert string into an Array
+
+        let empAddress="Nashik"
+        console.log(empAddress)
+
+        console.log(empAddress.split())
+
+        // '' or ""- split by character
+        console.log(empAddress.split(""))
+
+        // space- split by word
+        console.log(empAddress.split( ))
+
+
+        let skill="AI Full Stack Engineer"
+        // console.log(skill.split())
+        // console.log(skill.split(' '))
+        // console.log(skill.split(''))
+
+        console.log(skill.split(' ').reverse().join(" "))
+
+
+        // trim()- remove white space from a given string
+        // return new string
+        let role=" FUll Stack "
+        console.log(role)
+        console.log(role.length)
+        
+
+        let res=role.trim()
+        console.log(res)
+        console.log(res.length)
+
+
+        // repeat
+        console.log(role.repeat(3))
+
+        
+        // includes- check exists or not
+        console.log(role.includes('Stack'))
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+
+
+
+
+    </script>
+
+</body>
+
+</html>
