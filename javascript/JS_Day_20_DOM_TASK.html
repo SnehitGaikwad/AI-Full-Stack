@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JS Event & DOM Task</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+
+            background:
+                radial-gradient(circle at 10% 20%, #243b55 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, #4b1d5c 0%, transparent 30%),
+                linear-gradient(135deg, #070b14, #111827);
+            
+            color: #fff;
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 16px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50px;
+            background: rgba(255,255,255,0.06);
+            color: #a5b4fc;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .header h1 span {
+            color: #818cf8;
+        }
+
+        .header p {
+            color: #94a3b8;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 24px;
+        }
+
+        /* Glass Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.055);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 28px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,0.35),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .card-title h2 {
+            font-size: 20px;
+        }
+
+        .card-title span {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* Balance Card */
+        .balance-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-card::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: #6366f1;
+            filter: blur(100px);
+            opacity: 0.25;
+            top: -100px;
+            right: -80px;
+        }
+
+        .balance-label {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .balance {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 800;
+            letter-spacing: -3px;
+        }
+
+        .balance span {
+            color: #818cf8;
+        }
+
+        .balance-info {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .status {
+            padding: 6px 11px;
+            border-radius: 8px;
+            background: rgba(34,197,94,0.12);
+            color: #4ade80;
+            font-size: 12px;
+        }
+
+        .account {
+            padding: 6px 11px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.06);
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #cbd5e1;
+            font-size: 13px;
+            margin-bottom: 9px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .currency {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #818cf8;
+            font-weight: 700;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 16px 15px 42px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 13px;
+            outline: none;
+
+            background: rgba(0,0,0,0.18);
+            color: #fff;
+
+            font-size: 15px;
+            transition: 0.25s ease;
+        }
+
+        input::placeholder {
+            color: #475569;
+        }
+
+        input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99,102,241,0.12);
+            background: rgba(0,0,0,0.25);
+        }
+
+        /* Buttons */
+        .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            padding: 15px;
+            border-radius: 13px;
+
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            box-shadow: 0 10px 25px rgba(99,102,241,0.25);
+        }
+
+        .btn-check {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .btn-withdraw {
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            box-shadow: 0 10px 25px rgba(239,68,68,0.18);
+        }
+
+        .btn-deposit {
+            background: linear-gradient(135deg, #10b981, #14b8a6);
+            box-shadow: 0 10px 25px rgba(16,185,129,0.18);
+        }
+
+        /* Task Info */
+        .task-card {
+            margin-top: 24px;
+        }
+
+        .task-list {
+            list-style: none;
+            display: grid;
+            gap: 13px;
+        }
+
+        .task-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 14px;
+            border-radius: 12px;
+
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+            background: rgba(99,102,241,0.15);
+            color: #818cf8;
+            font-size: 14px;
+        }
+
+        /* Result */
+        .result-box {
+            margin-top: 20px;
+            padding: 16px;
+
+            border-radius: 13px;
+            border: 1px dashed rgba(129,140,248,0.3);
+
+            background: rgba(99,102,241,0.06);
+        }
+
+        .result-box small {
+            color: #64748b;
+            font-size: 11px;
+        }
+
+        .result-box p {
+            margin-top: 5px;
+            color: #818cf8;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #475569;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 25px 15px;
+            }
+
+            .card {
+                padding: 20px;
+                border-radius: 18px;
+            }
+
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                letter-spacing: -1px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="badge">JAVASCRIPT • DOM • EVENTS</div>
+
+            <h1>Digital <span>Wallet</span></h1>
+
+            <p>
+                Practice DOM manipulation and JavaScript event handling
+            </p>
+        </header>
+
+
+        <section class="dashboard">
+
+            <!-- LEFT SIDE -->
+            <div>
+
+                <!-- Balance Card -->
+                <div class="card balance-card">
+
+                    <div class="card-title">
+                        <h2>Account Overview</h2>
+                        <span>ACTIVE ACCOUNT</span>
+                    </div>
+
+                    <p class="balance-label">
+                        Current Balance
+                    </p>
+
+                    <div class="balance">
+                        ₹<span id="accountOverview">0.00</span>
+                    </div>
+
+                    <div class="balance-info">
+                        <div class="status">
+                            ● Account Active
+                        </div>
+
+                        <div class="account">
+                            # JS-2026
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Task Information -->
+                <div class="card task-card">
+
+                    <div class="card-title">
+                        <h2>DOM Task</h2>
+                        <span>4 EVENTS</span>
+                    </div>
+
+                    <ul class="task-list">
+
+                        <li>
+                            <div class="icon">＋</div>
+                            <div >
+                                <strong>Add Balance</strong><br>
+                                <small>Add a new amount to the account.</small>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="icon">◉</div>
+                            <div>
+                                <strong>Check Balance</strong><br>
+                                <small>Display the current account balance.</small>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="icon">↗</div>
+                            <div>
+                                <strong>Withdraw</strong><br>
+                                <small>Remove money from the account.</small>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="icon">↓</div>
+                            <div>
+                                <strong>Deposit</strong><br>
+                                <small>Deposit money into the account.</small>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+            <div class="card">
+
+                <div class="card-title">
+                    <h2>Wallet Controls</h2>
+                    <span>INPUT PANEL</span>
+                </div>
+
+
+                <!-- Input 1 -->
+                <div class="form-group">
+
+                    <label for="balanceAmount">
+                        Add Balance Amount
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="currency">₹</span>
+
+                        <input
+
+                            type="number"
+                            id="balanceAmount"
+                            placeholder="Enter amount"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Input 2 -->
+                <div class="form-group">
+
+                    <label for="withdrawAmount">
+                        Withdraw Amount
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="currency">₹</span>
+
+                        <input
+                            type="number"
+                            id="withdrawAmount"
+                            placeholder="Enter withdrawal amount"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Input 3 -->
+                <div class="form-group">
+
+                    <label for="currentBalance">
+                        Current Balance
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="currency">₹</span>
+
+                        <input
+                            type="number"
+                            id="currentBalance"
+                            readonly
+                            placeholder="Enter current balance"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+                <div class="buttons">
+
+                    <button class="btn-add" onclick="addBalance()">
+                        ＋ Add Balance
+                    </button>
+
+                    <button class="btn-check">
+                        ◉ Check Balance
+                    </button>
+
+                    <button class="btn-withdraw" onclick="withdrawBalance()">
+                        ↗ Withdraw
+                    </button>
+
+                    <button class="btn-deposit">
+                        ↓ Deposit
+                    </button>
+
+                </div>
+
+
+                <!-- Result -->
+                <div class="result-box">
+
+                    <small>TRANSACTION STATUS</small>
+
+                    <p>
+                        Waiting for JavaScript event...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            Built for JavaScript DOM & Event Practice
+        </footer>
+
+    </main>
+
+
+    <script>
+
+        const addBalance=()=>{
+            // alert()
+
+            let amount=document.getElementById('balanceAmount').value
+            console.log(amount)
+
+
+            
+            // set current balance in input field
+
+            document.getElementById('currentBalance').value=amount
+
+            document.getElementById('accountOverview').innerText=amount
+
+        }
+
+
+        // withdraw function
+        const withdrawBalance=()=>{
+            let withdrawamount=document.getElementById('withdrawAmount').value
+            let currentBalance=document.getElementById('currentBalance').value
+
+            let netAmount=currentBalance-withdrawamount
+            
+            document.getElementById('accountOverview').innerText=netAmount
+
+            document.getElementById('currentBalance').value=netAmount
+
+
+        }
+
+    </script>
+
+</body>
+</html>
