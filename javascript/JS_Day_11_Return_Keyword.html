@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- return keyword -->
+
+    <script>
+
+        // return
+
+        //  return keyword is used to return data outside the function
+        // or it return the value itself to that function
+
+        // it stops the function execution after returning
+
+        function Demo(x, y, z) {
+            // console.log(x+y+z)
+            return x + y + z;
+        }
+        let result=Demo(10, 30, 60);
+        console.log(result)
+
+
+
+        // Login Functionality
+        // take username and password from user
+        let username = prompt('Enter Username', 'john');
+        let password = prompt('Enter Password')
+
+        // function Login(name, pass) {
+        //     if (name === 'pratik' && pass ==='12345') {
+        //         alert("Login Successfully")
+        //     }
+        //     else {
+        //         alert("Login faild")
+        //     }
+        // }
+        // Login(username,password)
+
+
+        //  function Login(name, pass) {
+        //     if (name === 'pratik' && pass ==='12345') {
+        //         return "Login Successfully"
+        //     }
+        //     return "Login faild"
+        // }
+        // let isLoggin=Login(username,password)
+        // alert(isLoggin)
+
+
+
+         function Login(name, pass) {
+            if (name === 'pratik' && pass ==='12345') {
+                return true
+            }
+            return false
+        }
+        let isLoggin=Login(username,password)
+        // alert(isLoggin)
+
+        if(isLoggin)
+        {
+            alert("Login Successfully")
+            window.location.href='https://www.instagram.com'
+        }
+        else
+        {
+            alert("wrong Crdedintials")
+        }
+
+
+
+
+        // 
+
+        function Demo3(name,role)
+        {
+            console.log("hello A");
+            return name;
+            console.log("hello B")
+        }
+
+        Demo3("Shivam","AI Expert")
+
+
+        // withdraw and deposit
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

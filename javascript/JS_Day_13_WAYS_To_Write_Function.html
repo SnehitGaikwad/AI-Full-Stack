@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <!-- Ways to write function -->
+
+    <h1></h1>
+    <script>
+
+        // Normal function
+        // Function expression
+        // Anonymous function
+        // FAT Arrow function / Lambda Function / Arrow function
+        //Self Invoking Function / IIFE - Imediate Invoking Function Expression
+
+
+
+        // Sync / Async programming
+        // Callback Function
+
+
+        // normal function
+
+
+        function Demo() {
+            console.log("hello normal function")
+        }
+        Demo()
+
+
+        // Function variable Expression
+
+        let Demo2 = function Demo() {
+            console.log("Hello Function variable expression")
+        }
+
+        Demo2()
+
+
+        // Anonymous function
+        // no name to that specific function
+
+        const Demo3 = function (x = 0, y = 0, z = 0, ...rest) {
+            return x + y + z;
+
+        }
+
+        console.log(Demo3(1000, 3000, 5000));
+
+        // Modern ES-6
+
+        // Arrow function / lamda Function / FAT Arrow function
+        // ES-6 Feature
+        // Modern way to write function
+        // We can write function in a single line
+        // No need to bind 'this' keyword
+
+
+        const Demo4 = () => {
+            console.log("hello arrow function")
+        }
+        Demo4()
+
+        // 
+        const Demo5 = () => console.log("Hello arrow function")
+        Demo5()
+
+
+        // when we return something we need to pass {}
+        const Demo6 = () => { return "Hello arrow function with return keyword" }
+        Demo6()
+
+        // without ()
+        const Demo7 = name => { console.log(`hello ${name}`) }
+        Demo7("Pratik")
+
+
+
+
+        // Hoisting
+        // 
+
+        // let a;
+        // console.log(a)
+
+        // 
+
+        //     a = 20;// Block
+        //     console.log(a)
+
+        //    let a;//20
+
+
+
+
+        // Normal function declrations are hoisted
+
+        A()
+
+        function A() {
+            console.log("hello Normal Function A")
+        }
+
+
+
+
+        // Oter function are not hoisted
+
+        let Demo8 = () => {
+            console.log("Hello Arrow function")
+        }
+        Demo8()
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

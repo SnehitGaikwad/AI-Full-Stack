@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // Arrays  Methods and properties
+
+        // used to perform multiple operations on Array
+
+
+        // length
+        // push / pop
+        // unshift  / shift
+        // slice / splice
+        // index of / lastIndexOf
+        // at / charAt /
+        // sort 
+        // reverse
+        //join
+        // toString
+        // fill
+
+
+
+        //filter /find
+        // reduce
+        // some /every
+        // map / for Each
+
+
+        // length- it return a length of an array
+        const arr = [100, 200, 400, 600, 800]
+        console.log(arr)
+
+        console.log(arr.length)
+
+        // Add / remove array elements to the end
+        // push ( add ) / pop. (remove)
+
+        // 3 Points for each and every method
+
+        // purpose and syntax
+        // it will modified original array or not
+        // what it returns
+
+
+        // push
+        // add  elements after the last index of an array
+        // Original Array Modified  - YES
+        // it return a new length of an array
+
+        const arr2 = ["React", "NodeJS", "FASTAPI", "AWS"]
+        console.log(arr2)
+
+        //Appends new elements to the end of an array, 
+        // and returns the new length of the array.
+        arr2.push("NextJS")
+        console.log(arr2)
+
+
+        console.log(arr2.push("Python"))//new length - 6
+
+        console.log(arr2)
+
+
+        // pop- remove last index of an array element
+        // original Modified - YES
+        // returns a remove element
+
+        const arr3 = ["REACT", "NEXTJS", "HTML", "TAILWIND", "AGI"]
+        console.log(arr3)
+
+        arr3.pop()
+
+
+        console.log(arr3)
+
+        console.log(arr3.pop())//TAILWIND
+
+        console.log(arr3)// [ REACT , NEXTJS, HTML ]
+
+
+        // ***************************************************
+
+
+
+        // Unshift-adding element to the starting index of an array
+        // shift- remove element from starting index of an array
+
+
+        // unshift- 
+        const role = ["admin", "super-admin", "manager", "user"]
+        console.log(role)
+
+        role.unshift("department")
+
+        console.log(role)
+
+
+        console.log(role.unshift("emp"))
+
+        console.log(role)
+
+
+        // shift- remove starting element from an array
+        // original modified- YES
+        // it returns remove element
+
+        const arr5 = [100, 400, 500, 700]
+        console.log(arr5)
+        arr5.shift()
+
+        console.log(arr5)//
+
+        console.log(arr5.shift())//400
+
+
+        // splice
+        // used to remove or add multiple elements from an array
+        // syntax- arr.splice(start,count)
+        // Original Array Modified or NOT - YES 
+        // It returns - New Array
+
+
+        const fruits = ["apple", "banana", "mango", "orange", "pineapple", "dragonfruit"];
+
+        console.log(fruits)
+
+        // fruits.splice(0, 2);//
+        // fruits.splice(1,4)
+
+        // fruits.splice(3,5);//
+
+        // fruits.splice(2);
+
+        // fruits.splice()
+        // fruits.splice(0)
+
+
+        // console.log(fruits.splice(2,3))// "mango", "orange", "pineapple"
+
+        // console.log(fruits)//"apple", "banana", dragonFruits
+
+
+        // 
+
+        fruits.splice(0,2,"Pomegranate","Custard apple")
+
+        console.log(fruits)
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

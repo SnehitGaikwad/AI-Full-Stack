@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        // slice
+
+        // used to extract some part of an array
+        // original ARRAY Will not modified - NO
+        // syntax-slice(start,end(last index element ignored))
+        // return- new array
+
+        // work for -ve index
+
+        // const activeUsers = [
+        //     { id: 1, name: "Aarav Sharma", status: "online", lastActive: "2026-09-22T10:15:30Z" },
+        //     { id: 2, name: "Priya Patel", status: "online", lastActive: "2026-09-22T10:16:12Z" },
+        // ];
+
+
+        const activeUsers = ["Aarav Sharma", "Priya Patel", "Rohan Mehta", "Sneha Kulkarni"];
+
+        console.log(activeUsers)
+
+        let res = activeUsers.slice(0, 2)
+        console.log(res)
+
+
+
+        console.log(activeUsers.slice(2, 4));//Rohan and Sneha
+
+        console.log(activeUsers)// 
+
+
+        console.log(activeUsers.slice(-3, -1));//
+
+
+        // *****************************************
+
+
+        // find index of an element
+
+        // indexOf- return starting index of an element
+        // lastIndexOf- return last index of an element
+
+        const courses = ["JavaScript", "React", "Node.js", "Python", "Java", "Python", "React"];
+        console.log(courses.indexOf("Python"))//3
+        console.log(courses.indexOf("React"));//1
+        console.log(courses.lastIndexOf("Python"))//5
+
+
+        // includes
+        // check element is present or not
+        // True or false
+        console.log(courses.includes("genAI"));//false
+
+
+        // at
+        console.log(courses.at(2))//Node JS
+
+
+
+        // concat
+        // used to merge 2 or more arrays
+        //
+        const arr1 = [100, 300, 500, 600];
+        const arr2 = ["Pratik", "Prathmesh", "Shivam"];
+
+        console.log(arr1 + arr2)
+        console.log(`${arr1 + arr2}`)
+
+        let newArray = arr2.concat(arr1)
+        console.log(newArray)
+
+        console.log(arr2)
+
+
+        // join
+        // toString
+        // used to convert array into string
+
+
+        // toString
+
+        const orderStatus = ["Pending", "Processing", "Shipped", "Delivered", "Cancelled"];
+        console.log(orderStatus.toString())
+
+
+        //join
+        // we can add separator
+        // , % $ #
+
+        console.log(orderStatus.join(" # "))
+
+
+        // sort 
+        // used to sort array in an asecnding or desecding order
+
+        const arr4 = ["X", "Y", "P", "A", "R", "E", "Z"]
+        console.log(arr4.sort())
+
+        // 
+
+        const no = [300, 50, 700, 1000, 80, 100, 10000];
+        console.log(no.sort())
+
+        // compare function
+        console.log(no.sort((a, b) => { return a - b }))
+
+
+        const mix = ["A", "X", "Z", "R", "S", 1000, 400, 500, 100, "Z"]
+        
+        console.log(mix)
+
+
+
+
+        const result = mix.sort((a, b) => {
+            if (typeof a === 'number' && typeof b === 'number') {
+                return a - b;
+            }
+
+
+            if (typeof a === "string" && typeof b === "string") {
+                return a.localeCompare(b)
+            }
+
+            return -1
+        })
+
+
+
+        // console.log(result)
+
+        // reverse
+        const arr6=[1000,3000,50,700,800,100]
+
+        console.log(arr6.reverse())
+
+        // for(let i=arr6.length-1;i>=0;i--)
+        // {
+        //     console.log(arr6[i])
+        // }
+
+
+
+
+        
+
+
+
+        // filter
+        // find
+        // some
+        // every
+        // reduce
+        // forEach 
+        // map
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

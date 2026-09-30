@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- Callback function -->
+
+
+    <script>
+
+        // callback function
+        // useful for async execution
+
+        // i will back later
+        // one function execute after another function finish their execution
+
+        // i.e passing one function inside into another function as a argument
+
+        // function A()
+        // {
+
+        // }
+
+        // function B()
+        // {
+
+        // }
+        // B(A)
+
+
+
+
+        // 
+
+
+        function A() {
+            console.log("hello A")
+        }
+
+        // A()
+
+        function B(callbacck) {
+
+            // called as a function - A()
+            callbacck()
+            console.log("Hello B")
+        }
+
+        // passing one function inside into another function as a argument
+        B(A)
+
+
+
+
+
+        // 
+        function Greet() {
+            console.log("hello Good Morning....")
+        }
+
+
+        function User(callback, name) {
+            callback()
+            console.log(`hello ${name}`)
+
+        }
+        User(Greet, "Pratik")
+        User(Greet, "Rahul")
+
+
+        // 
+        function X(name, skill) {
+            console.log(`Hello Your Name Is ${name} and Your Skill is ${skill}`)
+        }
+
+        function Y(callback, age, address) {
+            callback("Motu", "HTML")
+            console.log(`Your age Is ${age} and Address is ${address}`)
+        }
+        Y(X, 20, "Pune")
+
+
+
+        function P(name, skill) {
+            return `Hello Your Name Is ${name} and Your Skill is ${skill}`
+        }
+
+        function Q(callback) {
+            //    console.log(callback("Motu","HTML"))
+            return callback("Motu", "HTML")
+        }
+        console.log(Q(P))
+
+
+
+
+
+        const A = () => {
+            console.log("hello A")
+        }
+
+        const B = (callback) => {
+            callback()
+            console.log("hello B")
+        }
+
+
+        B(A)
+
+
+
+
+    </script>
+
+</body>
+
+</html>

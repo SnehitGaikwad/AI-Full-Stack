@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        // nested callback
+
+        function A() {
+
+            console.log("Hello A")
+
+            function demo1(name) {
+                console.log("hello demo 1 = " + name)
+            }
+            function Demo2(callback, skill) {
+                callback("ABC")
+                console.log("hello demo 2 " + skill)
+            }
+            Demo2(demo1, "NextJS")
+
+        }
+        function B(callbacck) {
+            callbacck()
+            console.log("Hello B")
+        }
+        B(A)
+
+
+        // 
+
+        const X=()=>{
+            const Y=()=>{
+                console.log("Hello Nested Arrow function")
+            }
+            Y()
+        }
+        X()
+
+
+        // 
+        // The inner function can be called by the outer function.
+
+
+
+        function Sum(a=0,b=0)
+        {
+            function Add(x,y)
+            {
+               console.log(x+y) 
+            }
+            Add(a,b)
+        }
+        Sum(10,30)
+
+    </script>
+
+</body>
+
+</html>

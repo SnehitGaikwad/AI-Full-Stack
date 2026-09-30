@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- Sync Programming
+     
+
+    Line by line execution of our program
+    one function waits for another function execution
+
+
+
+    Function executes when we called not when we defined/ declared
+    -->
+
+
+    <script>
+
+        // function A() {
+        //     console.log("hello A")
+        // }
+
+
+        // A()
+
+        // function B() {
+
+        //     console.log("Hello B")
+        // }
+        //  B()
+
+
+
+        function A() {
+            console.log("hello A")
+        }
+
+
+        function B() {
+            A()
+            console.log("Hello B")
+        }
+        B()
+
+
+
+        function X() {
+
+            //api call
+        }
+        X() //10s
+
+        function Y() {
+
+            //normal task
+        }
+        Y()//20s
+
+        function Z() {
+            //event trigger
+
+        }
+        Z()//15s
+
+
+
+        // 45s- Total taken by this task
+
+
+        // It down the application performance
+        // it slows the website
+
+
+        // ***************************************************
+
+        // Async programming
+
+        // Parrael execution of our program
+        // function doesnt wait for another function execution
+
+        // it sends the request only and continue their execution
+
+
+        function A()
+        {
+            //request send
+        }
+        A() 
+
+        //10
+
+
+        // continue
+        function B()
+        {
+
+        }
+        B()
+
+        //5s
+
+        //25s
+
+        // It improves the application performance
+
+        // Now a days every software build on async programming
+
+
+
+        // Modern Topic
+
+        // callback function
+        // Promises
+        // async await
+
+        //setTimeout / setInterval
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Functions In JS</h1>
+    <hr>
+
+
+    <button onclick="Multi(10,10)">Click Here</button>
+    
+
+
+    <script>
+
+
+// function - is. a block of code ( bunch of statements )
+
+// we can call same function multiple times by calling that function
+// we can reused multiple times by callling
+
+
+//it takes input and return outputs based on input
+// we can used/called same function multiple times by passing multiple different arguments
+
+
+// syntax
+
+
+//function declaration
+// function function_name()
+// {
+//     // block of code
+
+// }
+
+// function calling / invoked
+// function_name()
+
+
+// eg
+
+
+console.log(10+20)//30
+console.log(30+40)//70
+console.log("Hello world")
+
+
+
+
+
+function Demo()
+{
+
+    // logic
+    console.log(20+40);
+    console.log("Welcome To JS Functions")
+}
+Demo()
+Demo()
+
+
+
+
+// 
+function Sum()
+{
+    console.log(10+300)
+}
+Sum();
+Sum()
+Sum()
+
+
+// Function with parameters and arguments
+// to make our function dynamic
+
+// parameters- values which we are passing while function declaration
+// arguments- values which we are passing while function calling i.e Actual values
+
+
+
+// function Demo2(name)
+// {
+//  //
+//  console.log(name)
+// }
+
+// Demo2("Pratik")
+// Demo2("Shivam")
+
+
+
+// 
+function Addition(a,b)
+{
+    console.log(a+b)
+}
+Addition(10,20)
+Addition(300,400)
+Addition(40,50)
+
+
+// 
+function Emp(name,skill)
+{
+    console.log(`Your Name Is ${name} and Your Skills Is ${skill}`)
+}
+
+Emp("Pratik","HTML")
+Emp("Snehit","CSS")
+
+
+
+// Functions are mostly called on Events ( actions)
+
+function Multi(a,b)
+{
+    console.log(a*b)
+    alert(a*b)
+}
+
+    </script>
+</body>
+</html>
