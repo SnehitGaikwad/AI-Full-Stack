@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        // Array
+
+        // Is a collection of Similar or different type of elements i.e it is store data in a container
+        // starts index from 0  
+        // store in []
+        // Array is a special type of object in a JS
+        // We can store any type of data in an ARRAY
+
+
+        // let a=20.20
+        // let a=""
+        // let a=true/false
+        // let a=null;
+        // let a;
+        // let arr=function()
+        // {}
+
+        // let arr=[10,"Pratik",true,null,[],{}]
+
+        // let role=["admin","super-admin","user"]
+        // let skills=["HTML","CSS","JS","REACT","TS","AWS","GENAI"];
+        // let AccType=["Saving","Current","Fixed Deposit","Recurring Deposit","Loan Account"];
+        // let Card=['Debit',"Credit"];
+
+
+
+        // literal way /normal way
+        const arr = [10, 20, "ABC", null, true, ["HTML", "CSS"]]
+        console.log(arr)
+
+        console.log(typeof arr)
+
+        // creating instance of an Array using new keyword
+
+        // const arr2=new Array("html","css",10)
+        // console.log(arr2)
+        // console.log(typeof arr2)
+
+
+
+
+        // looping / iterating
+
+        // 
+        let skills = ["HTML", "CSS", "JS", "REACT", "TS", "AWS", "GENAI"];
+
+        console.log(skills)
+
+        console.log(skills[1])
+
+
+        // length
+        console.log(skills.length) //7
+
+        // 
+        // let i = 0;
+        // while (i < skills.length) {
+        //     console.log(skills[i])
+        //     i++;
+        // }
+
+        // for loop
+
+        // for (let i = 0; i < skills.length; i++) {
+        //     console.log(skills[i])
+        // }
+
+
+        //forin
+        // it return a key :value
+        for (let x in skills) {
+            console.log(`${x} : ${skills[x]}`)
+
+        }
+
+
+        // for of
+        // retrun only values
+        // must be index
+
+        for (let x of skills) {
+            console.log(x)
+        }
+
+
+
+        // access elements by number indexing
+
+        // 
+
+        const array = [10, 200, 400, 500, true, [1000, 3000, 5000, ["HTML", "CSS"]], { "id": 1, "name": "PRATTIK" }]
+        console.log(array)
+        console.log(array[5])
+
+        console.log(array[5][3])
+
+        console.log(array[6])
+
+        
+
+
+    </script>
+
+</body>
+
+</html>
