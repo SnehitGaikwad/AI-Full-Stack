@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meter to KM Calculator</title>
+</head>
+<body>
+    <h2>Meter to KM Calculator</h2>
+    <input type="number" id="meter" placeholder="Enter meters">
+
+    <button onclick="convert()">Convert</button>
+
+    <p id="result"></p>
+
+    <script>
+        function convert() {
+            let meter = document.getElementById("meter").value;
+            let km = meter / 1000;
+
+            document.getElementById("result").innerText = meter + " meters  " + km + " kilometers.";
+        }
+    </script>
+</body>
+</html>
