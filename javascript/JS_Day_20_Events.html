@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box1{
+            height:450px;
+            width: 450px;
+            border-radius: 30px 20px 30px 20px;
+            background:linear-gradient(purple,rgb(54, 54, 255),white);
+            margin: 100px auto;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Events In JS</h1>
+
+    <hr>
+
+    <button onclick="demo1()">Click Here</button>
+    <button ondblclick="demo2()">dbl Click Here</button>
+    <button oncontextmenu="demo3()">Right Click Here</button>
+    <button onmouseover="demo4()" onmouseleave="alert('hello onmouseleave')">onMouseOver</button>
+
+
+    <hr>
+
+    <button onclick="changeColor()">Change Color onClick</button>
+
+    <div class="box1" id="box1" onmouseover="changeShape()" onmouseleave="normalShape()"></div>
+    
+    <script>
+
+
+        // events
+        // performing some operations on a users activity
+        // JS is a Event based scripting language
+
+        // events prefix starts with 'on'
+
+
+        // 4 types of events JS
+
+        // mouse event
+        // keyboard event
+        // window event
+        // form events
+
+
+        // mouse events- when we used mouse / cursor
+
+        // onclick- when we click on html elements
+        // ondblclick- when we click double
+        // oncontextmenu- when we right click on mouse button ( context menu bar)
+        // onmouseover- when we hover on html elements
+        // onmousleave- when we leave from html elements
+        
+
+        // onmouseenter
+        // onmouseout
+        // onmouseup
+        // onmousedown
+
+
+
+
+        // onclick
+        const demo1=()=>{
+            alert('hello onclick event')
+        }
+
+
+
+        const demo2=()=>{
+            alert('hello dblclick event')
+        }
+
+
+
+        const demo3=()=>{
+            alert('onContextMenu event called ( called before context menu is displayed)')
+        }
+
+
+        const demo4=()=>{
+            alert('hello onmouseover')
+        }
+
+
+
+
+
+        const changeColor=()=>{
+
+            // document.getElementById('box1')
+            document.querySelector('#box1').style.background="orange"
+
+            
+        }
+
+
+        const changeShape=()=>{
+            let box1=document.getElementById('box1');
+            box1.style.borderRadius="50%";
+            box1.style.width="600px"
+        }
+
+        const normalShape=()=>{
+            let box1=document.getElementById('box1');
+            box1.style.borderRadius="40px";
+            box1.style.width="400px"
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <label for="">Enter Your EMail</label>
+    <input type="email" name="useremail" onkeyup="fetchEmail()" id="useremail">
+    <br><br>
+
+    <label for="">ENter Your Password</label>
+    <input type="password" name="userpass" id="userpass">
+
+    <!-- <button>Submit Form</button> -->
+
+    <h1>User Email is <mark> <span id="email"></span> </mark></h1>
+    <h1>User Password is <span id="password"></span> </h1>
+
+
+
+    <script>
+        const fetchEmail=()=>{
+            // alert()
+
+            // console.log(document.getElementById('useremail').value)
+            let email=document.getElementById('useremail').value
+            document.getElementById('email').innerText=email
+
+        }
+    </script>
+    
+</body>
+</html>
