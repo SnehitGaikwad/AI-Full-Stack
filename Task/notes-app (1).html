@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes & Reminders</title>
+
+<style>
+  /* ---------- COLORS ---------- */
+  :root {
+    --bg: #1e2a4a;
+    --panel: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --main: #4f46e5;
+    --red: #ef4444;
+    --green: #16a34a;
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+
+  body {
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 24px 16px 60px;
+  }
+
+  .app { max-width: 960px; margin: 0 auto; }
+
+  h1 { color: white; font-size: 2rem; }
+  .subtitle { color: #aab4d4; margin: 4px 0 22px; }
+
+  /* ---------- FORM (add / edit a note) ---------- */
+  .form-box {
+    background: var(--panel);
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .form-box h2 { font-size: 1.1rem; margin-bottom: 12px; }
+
+  input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    font: inherit;
+  }
+  input:focus, textarea:focus { outline: none; border-color: var(--main); }
+  textarea { resize: vertical; min-height: 80px; }
+
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .row label { color: var(--muted); font-size: 0.9rem; }
+  .row input { width: auto; margin-bottom: 0; flex: 1; min-width: 180px; }
+
+  button {
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .btn-main   { background: var(--main); color: white; }
+  .btn-cancel { background: #e5e7eb; color: var(--text); display: none; }
+  button:hover { filter: brightness(1.1); }
+
+  .buttons { margin-top: 12px; display: flex; gap: 10px; }
+
+  /* ---------- SEARCH BAR ---------- */
+  #search {
+    background: white;
+    margin-bottom: 8px;
+  }
+  #count { color: #aab4d4; margin-bottom: 14px; font-size: 0.9rem; }
+
+  /* ---------- NOTES GRID ---------- */
+  #notesBox {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+  }
+
+  .note {
+    border-radius: 14px;
+    padding: 16px;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  }
+  /* different colors for notes */
+  .color0 { background: #fde68a; }
+  .color1 { background: #fbcfe8; }
+  .color2 { background: #bae6fd; }
+  .color3 { background: #bbf7d0; }
+
+  .note h3 { font-size: 1.1rem; }
+  .note p  { white-space: pre-wrap; word-break: break-word; flex: 1; }
+
+  .reminder-tag {
+    font-size: 0.8rem;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 4px 10px;
+    border-radius: 99px;
+    align-self: flex-start;
+  }
+  .reminder-tag.late { background: var(--red); color: white; }
+
+  .note-buttons { display: flex; gap: 8px; }
+  .note-buttons button { padding: 7px 14px; font-size: 0.85rem; }
+  .btn-edit   { background: rgba(0, 0, 0, 0.12); color: var(--text); }
+  .btn-delete { background: var(--red); color: white; }
+
+  .empty { color: #aab4d4; grid-column: 1 / -1; text-align: center; padding: 40px 0; }
+
+  /* ---------- POP-UP MESSAGE ---------- */
+  #toast {
+    position: fixed;
+    bottom: 20px; left: 50%;
+    transform: translate(-50%, 120px);
+    background: var(--green);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 99px;
+    font-weight: bold;
+    transition: transform 0.3s;
+    max-width: 90%;
+  }
+  #toast.show { transform: translate(-50%, 0); }
+  #toast.alarm { background: var(--red); }
+
+  /* ---------- REMINDER POPUP ---------- */
+  #popupBg {
+    display: none;                       /* hidden until a reminder rings */
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 10;
+  }
+  #popupBg.show { display: flex; }
+
+  .popup {
+    background: white;
+    border-radius: 22px;
+    padding: 28px;
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    animation: pop 0.3s;
+  }
+  @keyframes pop {
+    from { transform: scale(0.7); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+  .popup .bell { font-size: 3.5rem; }
+  .popup h2 { margin: 6px 0; }
+  .popup .popup-title { font-size: 1.2rem; font-weight: bold; color: var(--main); }
+  .popup .popup-text  { color: var(--muted); margin: 8px 0 20px; white-space: pre-wrap; word-break: break-word; }
+  .popup .popup-buttons { display: flex; gap: 10px; }
+  .popup .popup-buttons button { flex: 1; }
+  .btn-snooze { background: #e5e7eb; color: var(--text); }
+</style>
+</head>
+
+<body>
+<div class="app">
+
+  <h1>📝 Notes & Reminders</h1>
+  <p class="subtitle">Write notes, set a reminder time, and never forget anything.</p>
+
+  <!-- FORM: add or edit a note -->
+  <div class="form-box">
+    <h2 id="formTitle">Add a new note</h2>
+
+    <input type="text" id="titleInput" placeholder="Title (for example: Maths homework)">
+    <textarea id="textInput" placeholder="Write your note here..."></textarea>
+
+    <div class="row">
+      <label for="reminderInput">⏰ Remind me at:</label>
+      <input type="datetime-local" id="reminderInput">
+    </div>
+
+    <div class="buttons">
+      <button class="btn-main" id="saveBtn">Add Note</button>
+      <button class="btn-cancel" id="cancelBtn">Cancel</button>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <input type="text" id="search" placeholder="🔍 Search notes...">
+  <p id="count"></p>
+
+  <!-- ALL NOTES -->
+  <div id="notesBox"></div>
+
+</div>
+
+<div id="toast"></div>
+
+<!-- REMINDER POPUP (hidden until a reminder time comes) -->
+<div id="popupBg">
+  <div class="popup">
+    <div class="bell">🔔</div>
+    <h2>Reminder!</h2>
+    <p class="popup-title" id="popupTitle"></p>
+    <p class="popup-text" id="popupText"></p>
+    <div class="popup-buttons">
+      <button class="btn-snooze" id="snoozeBtn">Snooze 5 min</button>
+      <button class="btn-main" id="okBtn">OK, got it</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // =========================================================
+  // STEP 1: Get the parts of the page we need
+  // =========================================================
+  const titleInput    = document.getElementById("titleInput");
+  const textInput     = document.getElementById("textInput");
+  const reminderInput = document.getElementById("reminderInput");
+  const saveBtn       = document.getElementById("saveBtn");
+  const cancelBtn     = document.getElementById("cancelBtn");
+  const formTitle     = document.getElementById("formTitle");
+  const searchInput   = document.getElementById("search");
+  const notesBox      = document.getElementById("notesBox");
+  const countText     = document.getElementById("count");
+  const toast         = document.getElementById("toast");
+
+
+  // =========================================================
+  // STEP 2: Our data
+  // "notes" is an ARRAY. Every note inside it is an OBJECT:
+  //   { id: 123, title: "...", text: "...", reminder: "2025-01-01T10:00", alerted: false }
+  // =========================================================
+  let notes = [];
+
+  // If we are editing a note, this stores its id. null = not editing.
+  let editingId = null;
+
+
+  // =========================================================
+  // STEP 3: Local Storage (save notes in the browser)
+  // =========================================================
+
+  // Save the notes array. Arrays must be changed to TEXT first (JSON.stringify)
+  function saveNotes() {
+    localStorage.setItem("myNotes", JSON.stringify(notes));
+  }
+
+  // Load the notes when the page opens. Text is changed back to an array (JSON.parse)
+  function loadNotes() {
+    const saved = localStorage.getItem("myNotes");
+    if (saved !== null) {
+      notes = JSON.parse(saved);
+    }
+  }
+
+
+  // =========================================================
+  // STEP 4: Show the notes on the page
+  // =========================================================
+  function showNotes() {
+    notesBox.innerHTML = "";                                  // clear the box
+
+    // what did the user type in the search box?
+    const word = searchInput.value.toLowerCase();
+
+    // keep only the notes that match the search word
+    const matching = [];
+    for (const note of notes) {
+      const inTitle = note.title.toLowerCase().includes(word);
+      const inText  = note.text.toLowerCase().includes(word);
+      if (inTitle || inText) {
+        matching.push(note);
+      }
+    }
+
+    countText.textContent = matching.length + " note(s)";
+
+    if (matching.length === 0) {
+      notesBox.innerHTML = '<p class="empty">No notes found. Add your first note above! ✨</p>';
+      return;
+    }
+
+    // make one card for each note
+    for (let i = 0; i < matching.length; i++) {
+      notesBox.appendChild(makeNoteCard(matching[i], i));
+    }
+  }
+
+  // Build ONE note card (a small function used by showNotes)
+  function makeNoteCard(note, number) {
+    const card = document.createElement("div");
+    card.className = "note color" + (number % 4);             // color0 .. color3
+
+    const title = document.createElement("h3");
+    title.textContent = note.title;
+
+    const text = document.createElement("p");
+    text.textContent = note.text;
+
+    card.appendChild(title);
+    card.appendChild(text);
+
+    // show reminder tag only if the note has a reminder
+    if (note.reminder) {
+      const tag = document.createElement("span");
+      tag.className = "reminder-tag";
+      tag.textContent = "⏰ " + formatDate(note.reminder);
+
+      // if the time has already passed, make the tag red
+      if (new Date(note.reminder) < new Date()) {
+        tag.className += " late";
+      }
+      card.appendChild(tag);
+    }
+
+    // Edit and Delete buttons
+    const buttons = document.createElement("div");
+    buttons.className = "note-buttons";
+
+    const editBtn = document.createElement("button");
+    editBtn.className = "btn-edit";
+    editBtn.textContent = "✏️ Edit";
+    editBtn.onclick = function () { startEdit(note.id); };
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "btn-delete";
+    deleteBtn.textContent = "🗑 Delete";
+    deleteBtn.onclick = function () { deleteNote(note.id); };
+
+    buttons.appendChild(editBtn);
+    buttons.appendChild(deleteBtn);
+    card.appendChild(buttons);
+
+    return card;
+  }
+
+
+  // =========================================================
+  // STEP 5: Add a note OR save changes to an edited note
+  // =========================================================
+  function addOrUpdateNote() {
+    const title = titleInput.value.trim();
+    const text  = textInput.value.trim();
+
+    // don't allow an empty note
+    if (title === "" && text === "") {
+      showToast("Please write something first!", false);
+      return;
+    }
+
+    if (editingId === null) {
+      // ADD: make a new note object and push it into the array
+      const newNote = {
+        id: Date.now(),                 // current time = a unique number
+        title: title || "Untitled",
+        text: text,
+        reminder: reminderInput.value,
+        alerted: false
+      };
+      notes.unshift(newNote);           // unshift = add at the START of the array
+      showToast("Note added ✅", false);
+
+    } else {
+      // EDIT: find the note and change its values
+      for (const note of notes) {
+        if (note.id === editingId) {
+          note.title    = title || "Untitled";
+          note.text     = text;
+          note.reminder = reminderInput.value;
+          note.alerted  = false;        // allow the reminder to ring again
+        }
+      }
+      showToast("Note updated ✅", false);
+    }
+
+    saveNotes();
+    clearForm();
+    showNotes();
+  }
+
+
+  // =========================================================
+  // STEP 6: Edit a note (put its values back in the form)
+  // =========================================================
+  function startEdit(id) {
+    for (const note of notes) {
+      if (note.id === id) {
+        titleInput.value    = note.title;
+        textInput.value     = note.text;
+        reminderInput.value = note.reminder;
+      }
+    }
+
+    editingId = id;
+    formTitle.textContent = "Edit note";
+    saveBtn.textContent = "Save Changes";
+    cancelBtn.style.display = "inline-block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+
+  // =========================================================
+  // STEP 7: Delete a note
+  // =========================================================
+  function deleteNote(id) {
+    const sure = confirm("Delete this note?");
+    if (sure === false) return;
+
+    // filter keeps every note EXCEPT the one with this id
+    notes = notes.filter(function (note) {
+      return note.id !== id;
+    });
+
+    saveNotes();
+    showNotes();
+    showToast("Note deleted 🗑", false);
+  }
+
+
+  // =========================================================
+  // STEP 8: Clear the form (back to "add" mode)
+  // =========================================================
+  function clearForm() {
+    titleInput.value = "";
+    textInput.value = "";
+    reminderInput.value = "";
+    editingId = null;
+    formTitle.textContent = "Add a new note";
+    saveBtn.textContent = "Add Note";
+    cancelBtn.style.display = "none";
+  }
+
+
+  // =========================================================
+  // STEP 9: Reminders
+  // Every 10 seconds we check: is any reminder time over?
+  // =========================================================
+  const popupBg    = document.getElementById("popupBg");
+  const popupTitle = document.getElementById("popupTitle");
+  const popupText  = document.getElementById("popupText");
+  const okBtn      = document.getElementById("okBtn");
+  const snoozeBtn  = document.getElementById("snoozeBtn");
+
+  // Which note is the popup showing right now? (null = popup is closed)
+  let popupNote = null;
+
+  function checkReminders() {
+    if (popupNote !== null) return;       // a popup is already open, wait
+
+    const now = new Date();
+
+    for (const note of notes) {
+      if (note.reminder && note.alerted === false) {
+        if (new Date(note.reminder) <= now) {
+          showPopup(note);                // time is over -> open the popup
+          return;                         // show only ONE popup at a time
+        }
+      }
+    }
+  }
+
+  // Open the popup and fill it with the note's title and text
+  function showPopup(note) {
+    popupNote = note;
+    popupTitle.textContent = note.title;
+    popupText.textContent  = note.text;
+    popupBg.classList.add("show");        // the CSS class "show" makes it visible
+  }
+
+  // Close the popup. "ring only once" = alerted becomes true
+  function closePopup() {
+    popupNote.alerted = true;
+    popupNote = null;
+    popupBg.classList.remove("show");
+    saveNotes();
+    showNotes();                          // refresh the red tag on the card
+  }
+
+  // Snooze: move the reminder 5 minutes later, so it rings again
+  function snoozePopup() {
+    const later = new Date(Date.now() + 5 * 60 * 1000);   // now + 5 minutes
+
+    // datetime-local needs the format "YYYY-MM-DDTHH:mm" in local time
+    const offset = later.getTimezoneOffset() * 60000;
+    popupNote.reminder = new Date(later - offset).toISOString().slice(0, 16);
+    popupNote.alerted  = false;
+
+    popupNote = null;
+    popupBg.classList.remove("show");
+    saveNotes();
+    showNotes();
+    showToast("Snoozed for 5 minutes 😴", false);
+  }
+
+  okBtn.addEventListener("click", closePopup);
+  snoozeBtn.addEventListener("click", snoozePopup);
+
+  setInterval(checkReminders, 10000);   // 10000 milliseconds = 10 seconds
+
+
+  // =========================================================
+  // SMALL HELPER FUNCTIONS
+  // =========================================================
+
+  // Show a small message at the bottom. isAlarm = true makes it red.
+  function showToast(message, isAlarm) {
+    toast.textContent = message;
+    toast.className = "show" + (isAlarm ? " alarm" : "");
+    setTimeout(function () { toast.className = ""; }, isAlarm ? 5000 : 2000);
+  }
+
+  // Turn "2025-01-01T10:00" into a friendly date
+  function formatDate(text) {
+    return new Date(text).toLocaleString([], {
+      day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"
+    });
+  }
+
+
+  // =========================================================
+  // STEP 10: EVENTS - connect buttons and typing to functions
+  // =========================================================
+  saveBtn.addEventListener("click", addOrUpdateNote);
+  cancelBtn.addEventListener("click", clearForm);
+  searchInput.addEventListener("input", showNotes);    // runs on every key typed
+
+
+  // =========================================================
+  // START: run when the page opens
+  // =========================================================
+  loadNotes();
+  showNotes();
+  checkReminders();
+</script>
+</body>
+</html>
